@@ -16,6 +16,7 @@
                 @if ($post->type)                
                     <p>{{ $post->type->type_name }}</p>
                 @endif
+
             </div>
             
             <form action="{{route('admin.posts.destroy', $post)}}" method="POST">

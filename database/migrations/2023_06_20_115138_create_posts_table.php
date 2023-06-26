@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('link');
             $table->text('descrizione');
             $table->string('obiettivi');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->timestamps();
         });
     }

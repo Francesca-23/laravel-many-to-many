@@ -42,7 +42,7 @@
                 <div class="alert alert-danger">{{$message}}</div>
                 @enderror
 
-                {{-- Tecnologie --}}
+                {{-- obiettivi --}}
                 <label for="obiettivi" class="form-label">Obiettivi</label>
                 <input type="text" class="form-control @error ('obiettivi') is-invalid @enderror" id="obiettivi" name="obiettivi" value="{{old('obiettivi') ?? $post->obiettivi}}">
 
@@ -60,6 +60,38 @@
                             <option value="{{$elem->id}}" {{old('type_id', $post->type_id) == $elem->id ? 'selected' : ''}}>{{$elem->type_name}}</option>
                         @endforeach
                     </select>
+                </div>
+
+                {{-- Technologies --}}
+                <div class="form-group py-4">
+
+                    @foreach ($technologies as $elem)
+
+                        <div class="form-check">
+
+                        @if ($errors->any())
+                    
+                        <input class="form-check-input" type="checkbox"
+                        name="technologies[]"
+                        value="{{$elem->id}}"
+                        id="post-checkbox-{{$elem->id}}"
+                        {{ in_array($elem->id, old('technologies', [])) ? 'checked' : ''}}>
+
+                        <label class="form-check-label" for="post-checkbox-{{$elem->id}}">{{$elem->name}}</label>
+                    
+                        @else
+
+                        <input class="form-check-input" type="checkbox"
+                        name="technologies[]"
+                        value="{{$elem->id}}"
+                        id="post-checkbox-{{$elem->id}}"
+                        {{ ($post->technologies->contains($elem)) ? 'checked' : ''}}>
+
+                        <label class="form-check-label" for="post-checkbox-{{$elem->id}}">{{$elem->name}}</label>
+
+                        @endif
+                            </div>
+                    @endforeach
                 </div>
 
                 <button type="submit" class=" d-block btn btn-primary">Modifica</button>

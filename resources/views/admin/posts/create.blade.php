@@ -61,6 +61,22 @@
                     </select>
                 </div>
 
+                {{-- Technologies --}}
+                <div class="form-group py-4">
+
+                    @foreach ($technologies as $elem)
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox"
+                            name="technologies[]"
+                            value="{{$elem->id}}"
+                            id="post-checkbox-{{$elem->id}}">
+                            <label class="form-check-label" for="post-checkbox-{{$elem->id}}">{{$elem->name}}</label>
+                        </div>
+
+                    @endforeach
+                </div>
+
                 <button type="submit" class=" d-block btn btn-primary">Invia</button>
             </form>
         </div>
